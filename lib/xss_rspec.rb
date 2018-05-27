@@ -1,5 +1,9 @@
-require "xss_rspec/version"
+require_relative "xss_rspec/version"
+require_relative"xss_rspec/dummy_data_creator"
 
 module XssRspec
-  # Your code goes here...
+  class << self
+    def check
+    end
+  end
 end
