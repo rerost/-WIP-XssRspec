@@ -32,8 +32,6 @@ module XssRspec
             .first
         end
 
-        private
-        
         def xss_injectable_types
           return [:string] 
         end

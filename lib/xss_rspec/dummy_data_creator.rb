@@ -7,7 +7,7 @@ module XssRspec
       def create_all_attribute
         DbParser.tables.map { |table|
           [table, create_attribute(table)]
-        }
+        }.to_h
       end
   
       def create_attribute(table)
