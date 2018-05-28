@@ -1,4 +1,4 @@
-require_relative "visitor/logger"
+require_relative "visitor/path_manager"
 
 module XssRspec
   module Checker
