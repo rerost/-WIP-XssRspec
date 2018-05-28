@@ -16,7 +16,7 @@ module XssRspec
         def dummy_value(table, column)
           column_type = DbParser.column_type(table, column) 
           if DbParser.xss_injectable_types.include? column_type
-            return "<script>alert('xss:#{table}:#{column}')</script>"
+            return "<script>alert('#{table}-#{column}')</script>"
           end
 
           case column_type
