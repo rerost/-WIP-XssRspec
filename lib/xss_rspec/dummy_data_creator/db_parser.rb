@@ -11,8 +11,8 @@ module XssRspec
         def xss_injectable_columns(table)
           klass = table.classify.constantize
           klass.columns_hash
-            .select { |k, v| xss_injectable_types.include?(v.type) }
-            .map { |k, v| k }
+            .select { |_, v| xss_injectable_types.include?(v.type) }
+            .map { |k, _| k }
         end
 
         def column_types(table)
