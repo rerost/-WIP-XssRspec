@@ -1,15 +1,20 @@
 require_relative "visitor/path_manager"
+require "selenium-webdriver"
 
 module XssRspec
   module Checker
     module Visitor
-      Request = Struct.new(:url, :method) 
       class << self
         def visit_all
-          requests = [Request.new("/users/100", "GET")]
-          requests.map { |r|
-            PathManager.replace_path(r.url, r.method)
+          driver = Selenium::WebDriver.for :chrome
+          visitable_urls.each { |url|
+            driver.navigate.to url
           }
+          driver.quit
+        end
+
+        def visitable_urls
+          ["localhost:3000/users/1000"]
         end
       end
     end

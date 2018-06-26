@@ -14,7 +14,8 @@ module XssRspec
         def dummy_value(table, column)
           column_type = DbParser.column_type(table, column) 
           if DbParser.xss_injectable_types.include? column_type
-            return "<script>alert('#{table}-#{column}')</script>"
+            ## Check which path is being used with referer
+            return "<script src='#{log_host}/#{table}/#{column}')/>"
           end
 
           case column_type
@@ -26,6 +27,10 @@ module XssRspec
             ## TODO(@rerost) Think proper error
             raise NameError, "Passed unknown column type of #{column} #{column_type}"
           end
+        end
+
+        def log_host
+          return "http://localhost:3001"
         end
       end
     end
