@@ -19,8 +19,7 @@ module XssRspec
 
     def create_all
       DummyDataCreator.create_all_attribute.each{ |table, attribute|
-        klass = table.classify.constantize
-        klass.new(attribute).save(validate: false)
+        table.new(attribute).save(validate: false)
       }
     end
 
